@@ -52,4 +52,24 @@ What's next?
 
 Now that you know how to make your first commit and push it to the remote repository here are some other commands that you should know to start working on a team project.
 
+## git pull
+
+Suppose you are now another dev working on the same repository so you'll have to use this command to pull in the changes that you just pushed to the repository before making any commits. If you don't pull then GitHub will yell at you that you need to pull first.
+
+````
+git pull
+````
+
+## git checkout -b "new-branch"
+
+You'll need this command too often while collaborating on a project that has more than one devs working on it. It creates a new branch for you with the name of the branch stated in the inverted commas (another gotcha here is the hyphen separated name for the branch which is necessary).
+
+````
+git checkout -b "new-branch"
+````
+
+There is (master) written after the name of the folder where you are running the command. That (master) is the default branch that gets created in every repository. If you see (master) in your command line then the `git checkout -b "new-branch"` will create a new branch based from the master branch. In other words, the branch you check out to will be based on the branch name you see in the command line so be careful about that.
+
+Once you have checked out to a branch you'll be able to work in a detached environment having all the files from master. This way if you mess something you just go back to master branch and you'll have the initial files back. Many professional devs like to work like that.
+
 more...
