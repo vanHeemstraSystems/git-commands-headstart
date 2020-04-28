@@ -38,5 +38,18 @@ Be very careful when using this command because it will add all the changed file
 
 Hence git commit -am "your commit message" is the second command that you must know.
 
+## git push origin master
 
+You are ready to push your first commit to the remote repository. The push here is for pushing your changes which requires a branch to push to call it origin and then specify the branch name master (the default branch that always exists on any repository).
 
+So git push origin master will take the local commit that you made in the above sections and upload it to the remote server on github for other people to collaborate.
+
+````
+git push origin master
+````
+
+What's next?
+
+Now that you know how to make your first commit and push it to the remote repository here are some other commands that you should know to start working on a team project.
+
+more...
