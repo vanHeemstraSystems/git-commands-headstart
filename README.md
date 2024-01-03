@@ -3,6 +3,8 @@ git-commands-headstart
 
 Based on "Git and Github - must know commands to make your first commit" at https://dev.to/juni/git-and-github---must-know-commands-to-make-your-first-commit-333c
 
+Based on "Git Reverting to Previous Commit – How to Revert to Last Commit" at https://www.freecodecamp.org/news/git-reverting-to-previous-commit-how-to-revert-to-last-commit/
+
 ## git status
 
 Check if there are already some changes tracked in the repository by git? git status will list any files that are changed.
@@ -71,5 +73,61 @@ git checkout -b "new-branch"
 There is (master) written after the name of the folder where you are running the command. That (master) is the default branch that gets created in every repository. If you see (master) in your command line then the `git checkout -b "new-branch"` will create a new branch based from the master branch. In other words, the branch you check out to will be based on the branch name you see in the command line so be careful about that.
 
 Once you have checked out to a branch you'll be able to work in a detached environment having all the files from master. This way if you mess something you just go back to master branch and you'll have the initial files back. Many professional devs like to work like that.
+
+## git reset
+
+To revert to a previous commit, you must first get the commit ID. To do that, run the command below:
+
+```
+$ git log --oneline
+```
+
+To go back to a previous commit (e.g. ```5914db0```), you run the git reset command followed by the commit ID. That is:
+
+```
+$ git reset 5914db0
+```
+
+We've successfully gone back to a previous commit.
+
+If you want to undo a commit and the all the changes made after that commit, you attach the ```--hard``` flag to your ```git reset``` command.
+
+Let's test this out by reverting back to the first commit (e.g. ```89f6c3d```):
+
+```
+$ git reset 89f6c3d --hard
+```
+
+We're back to the initial state of the file at the point of the specified commit. All changes that were made to the file after that commit were deleted. When we check the commit log, we'll have just the first commit.
+
+If you undo a commit and delete every file change that came after it, you might lose important changes made to your code by you and other teammates. This will also change the commit history of your project.
+
+Luckily for us, there is way to recover the state of a deleted commit. You can learn more about that [here](https://www.freecodecamp.org/news/how-to-recover-a-deleted-file-in-git/).
+
+```git reset``` will undo changes up to the state of the specified commit ID. For example, reverting to the second commit ID will undo changes and leave the state of the file as the state of the second commit.
+
+You should use ```git reset``` when working on a local repository with changes yet to be pushed remotely. This is because running this command after pulling changes from the remote repo will alter the commit history of the project, leading to merge conflicts for everyone working on the project.
+
+```git reset``` is a good option when you realize that the changes being made to a particular local branch should be somewhere else. You can reset and move to the desired branch without losing your file changes.
+
+## git revert
+
+To revert to the to the previous commit, run the git revert command along with the commit ID of the current commit.
+
+In our case, we'll be using the ID of a third commit (e.g. ```882ad02```):
+
+```
+$ git revert 882ad02
+```
+
+The command above will undo the current commit and revert the file to the state of the previous commit.
+
+Unlike the git reset command, the git revert command creates a new commit for the reverted changes. The commit where we reverted from will not be deleted.
+
+```git revert``` will undo changes up to the state before the specified commit ID. For example, reverting to the second commit ID will undo changes and leave the state of the file as the state of the commit that comes before the second commit – the first commit.
+
+```git revert``` is a good option for reverting changes pushed to a remote repository. Since this command creates a new commit, you can safely get rid of your mistakes without rearranging the commit history for everyone else.
+
+So as you can see, ```git reset``` and ```git revert``` are not the same.
 
 more...
