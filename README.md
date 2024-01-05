@@ -130,4 +130,14 @@ Unlike the git reset command, the git revert command creates a new commit for th
 
 So as you can see, ```git reset``` and ```git revert``` are not the same.
 
+## git rm -r --cached
+
+Should your ```.gitignore``` file not manage to ignore files that are listed in it, here is a way to force ```.gitignore``` to work properly by emptying cache:
+
+```
+$ git rm -r --cached .;
+$ git add .;
+$ git commit -m "Untracked files issue resolved to fix .gitignore";
+```
+
 more...
